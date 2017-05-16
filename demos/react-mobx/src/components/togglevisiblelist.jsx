@@ -11,7 +11,7 @@ const ToggleVisibleTodoList = ({ toggleList }) => (
 )
 
 ToggleVisibleTodoList.propTypes = {
-  toggleList: PropTypes.func.isRequired
+  toggleList: PropTypes.func
 }
 
 export default ToggleVisibleTodoList
