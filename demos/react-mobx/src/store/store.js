@@ -1,6 +1,10 @@
 import { observable, computed, action } from 'mobx'
 
 class Store {
+  constructor () {
+    this.addAction = this.addAction.bind(this)
+    this.handlerChange = this.handlerChange.bind(this)
+  }
   @observable todos = [
     {
       text: '1',
@@ -11,8 +15,13 @@ class Store {
       completed: false
     }
   ]
-  @action addAction (event) {
+  @observable val = 'abc'
+  @computed get inputLength () {
     console.log(this)
+    console.log(1)
+    return this.val.lenght
+  }
+  @action addAction (event) {
     if (event.keyCode !== 13) {
       return false
     } else {
@@ -24,12 +33,8 @@ class Store {
       this.val = ''
     }
   }
-
-  @observable val = 'abc'
   @action handlerChange (event) {
-    console.log(this)
     this.val = event.target.value
-    console.log(this.val)
   }
 }
 
