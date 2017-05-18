@@ -1,17 +1,9 @@
 import { combineReducers } from 'redux'
 
-const addTodo = (state = {
-  val: "123"
-}, action) => {
+const addTodo = (state = "123", action) => {
   switch (action.type) {
-    case 'ADD_TODO':
-      return {
-        val: action.val
-      }
     case 'CHANGE_VAL': 
-      return {
-        val: action.val
-      }
+      return action.val
     default: return state
   }
 }
@@ -31,19 +23,20 @@ let data = [
     }
   ]
 
-const todoList = (state = {
-  todos: data
-}, action) => {
+const todoList = (state = data, action) => {
   switch (action.type) {
     case "ADD_TODO": 
-      return Object.assign({}, state, {
-        id: state.todos.lenght,
+      return state.concat({
+        id: data.length,
         text: action.text
       })
     default: return state
   }
 }
 
-const reducer = combineReducers({addTodo, todoList})
+const reducer = combineReducers({
+  addTodo, 
+  todoList
+})
 
 export default reducer

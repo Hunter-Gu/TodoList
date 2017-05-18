@@ -3,7 +3,7 @@ import AddToDo from '../components/addtodo.jsx'
 
 const mapStateToProps = (state) => {
   return {
-    val: state.val
+    val: state.addTodo
   }
 }
 

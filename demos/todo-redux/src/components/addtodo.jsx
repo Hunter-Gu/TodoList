@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AddTodo = ({ val, handlerChange, addTodoAction }) => (
+const AddTodo = ({ val, handlerChange }) => (
   <div className="add-todo">
     <input
       value={val}
