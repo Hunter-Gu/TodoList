@@ -4,17 +4,17 @@ import { observer } from 'mobx-react'
 @observer
 class AddTodo extends Component {
   render () {
-    let { val, handlerChange, addAction, getInputLength } = this.props.store
-    
+    let { val, handlerChange, addAction, inputLength } = this.props.store
+
     return (
       <div>
         <input
           value={val}
-          onChange={handlerChange}
+          onChange={handlerChange.bind(this.props.store)}
           onKeyDown={addAction}
         />
         <span>{val}</span>
-        <p>{getInputLength}/10</p>
+        <p>{inputLength}/10</p>
       </div>
     )
   }
