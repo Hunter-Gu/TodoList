@@ -1,0 +1,23 @@
+html,
+body,
+ul,
+div,
+li{
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style: none;
+}
+
+  .pic-box{
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  @import url('./addtodo.scss');
+
+  @import url('./todolist.scss');
+
