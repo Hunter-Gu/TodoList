@@ -1,5 +1,12 @@
 .todo-list {
   width: 50%;
+  max-height: 350px;
   margin: 0 auto;
-  border: 1px solid #ccc;
+  overflow: auto;
+  li{
+    height: 35px;
+    line-height: 35px;
+    font-size: 20px;
+    background: rgba(250, 250, 250, 0.5);
+  }
 }

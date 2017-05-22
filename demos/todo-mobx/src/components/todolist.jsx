@@ -10,8 +10,8 @@ class TodoList extends Component {
     return (
       <ul className="todo-list">
         {
-          store.todoData.map((todo, i) =>
-            <li key={i}>{ todo }</li>
+          store.getListData.map((todo, i) =>
+            <li key={i}>{ todo.data }</li>
           )
         }
       </ul>

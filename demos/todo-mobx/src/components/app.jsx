@@ -4,7 +4,7 @@ import ToggleList from './togglelist.jsx'
 import TodoList from './todolist.jsx'
 
 const App = ({ store }) => (
-  <div>
+  <div className="todo-app">
     <AddTodo store={store} />
     <ToggleList store={store} />
     <TodoList store={store} />

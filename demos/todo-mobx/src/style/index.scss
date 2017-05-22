@@ -10,26 +10,42 @@ li {
   list-style: none;
 }
 
-  .nav-bar{
-    width: block;
-    width: 100%;
+html,
+body{
+  height: 100%;  
+}
+body{
+  background: url('../img/1.jpeg')center center no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.nav-bar{
+  width: block;
+  width: 100%;
+  height: 50px;
+  background: rgba(0, 255, 228, 0.53);
+  div {
+    width: 80%;
     height: 50px;
-    background: rgba(0, 255, 228, 0.53);
-    div {
-      width: 80%;
+    margin: 0 auto;
+    a{
+      display: block;
       height: 50px;
-      margin: 0 auto;
-      a{
-        display: block;
-        height: 50px;
+      width: 50px;
+      float: left;
+      svg {
         width: 50px;
-        float: left;
-        svg {
-          width: 50px;
-          height: 50px;
-          margin-top: -5px;
-        }
+        height: 50px;
+        margin-top: -5px;
       }
     }
   }
+}
+#root {
+  height: 100%;
+  .todo-app {
+    height: 100%;
+  }
+}
 

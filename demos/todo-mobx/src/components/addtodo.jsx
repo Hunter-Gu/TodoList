@@ -15,7 +15,7 @@ class AddTodo extends Component {
           onChange={store.handlerChange}
           onKeyDown={store.addTodo}
         />
-        <span className="input-length">{store.getInputLength}</span>
+        <i className="input-length">{store.getInputLength}</i>
         <p className="input-review">{store.defaultVal}</p>
       </div>
     )
