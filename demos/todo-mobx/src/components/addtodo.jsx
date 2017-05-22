@@ -7,7 +7,7 @@ class AddTodo extends Component {
     let { store } = this.props
 
     return (
-      <div>
+      <div className="add-todo">
         <input
           className="input"
           placeholder="记录你的 todo 吧..."
@@ -15,7 +15,8 @@ class AddTodo extends Component {
           onChange={store.handlerChange}
           onKeyDown={store.addTodo}
         />
-        <p></p>
+        <span className="input-length">{store.getInputLength}</span>
+        <p className="input-review">{store.defaultVal}</p>
       </div>
     )
   }

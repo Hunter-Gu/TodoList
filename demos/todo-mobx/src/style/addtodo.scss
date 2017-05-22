@@ -1,10 +1,19 @@
-
-.input {
-  display: block;
-  width: 40%;
-  margin: 0 auto;
-  padding: 10px;
-  margin-top: 100px;
-  box-sizing: border-box;
-  font-size: 30px;
+.add-todo{
+  position: relative;
+  .input {
+    display: block;
+    width: 40%;
+    margin: 0 auto;
+    padding: 10px;
+    margin-top: 100px;
+    box-sizing: border-box;
+    font-size: 30px;
+  }
+  .input-length{
+    position: absolute;
+  }
+  .input-review {
+    width: 40%;
+    margin: 0 auto;
+  }
 }
