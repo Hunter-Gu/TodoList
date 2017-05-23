@@ -3,11 +3,21 @@
   height: 30px;
   margin: 0 auto;
   border: 1px solid #ccc;
-  input {
-    display: block;
-    width: 50%;
-    height: 30px;
+  p{
     float: left;
-    // opacity: 0;
+    position: relative;
+    width: 50%;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 30px;
+      opacity: 0;
+    }
   }
 }

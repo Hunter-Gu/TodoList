@@ -23,6 +23,28 @@ class Store {
       return val
     }
   }
+  @computed get setLeftStyle () {
+    if (this.checked) {
+      return {
+        background: 'rgba(150, 150, 150, 0.5)'
+      }
+    } else {
+      return {
+
+      }
+    }
+  }
+  @computed get setRightStyle () {
+    if (!this.checked) {
+      return {
+        background: 'rgba(150, 150, 150, 0.5)'
+      }
+    } else {
+      return {
+        
+      }
+    }
+  }
 
   @action.bound handlerChange (event) {
     this.defaultVal = event.target.value
