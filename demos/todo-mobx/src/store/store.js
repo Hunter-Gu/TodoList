@@ -35,14 +35,12 @@ class Store {
       return false
     }
   }
-  @action.bound handerToggle (event) {
-    console.log(event.target.checked)
-    debugger
-    if (event.target.checked) {
-      return
-    }
-    this.checked = !this.checked
-  } 
+  @action.bound handerToggleLeft () {
+    this.checked = true
+  }
+  @action.bound handerToggleRight () {
+    this.checked = false
+  }
 }
 
 export default Store

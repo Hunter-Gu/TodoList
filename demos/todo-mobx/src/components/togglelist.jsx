@@ -7,8 +7,8 @@ class ToggleList extends Component {
     let { store } = this.props
     return (
       <div className="toggle-list">
-        <input type="radio" name="allornot" checked={store.checked} onChange={store.handerToggle}/>
-        <input type="radio" name="allornot" checked={!store.checked} onChange={store.handerToggle}/>
+        <input type="radio" name="allornot" checked={store.checked} onChange={store.handerToggleLeft}/>
+        <input type="radio" name="allornot" checked={!store.checked} onChange={store.handerToggleRight}/>
       </div>
     )
   } 
