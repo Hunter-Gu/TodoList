@@ -1,4 +1,4 @@
-import { observable, computed, action } from 'mobx'
+import { observable, computed, autorun, action } from 'mobx'
 
 import data from './data.js'
 
@@ -6,6 +6,14 @@ class Store {
   @observable todoData = data
   @observable defaultVal = 'abc'
   @observable checked = true
+
+  welcome = () => {
+    autorun(() => {
+      if (this.defaultVal === 'hunter') {
+        console.log('welcome')
+      }
+    })
+  }
 
   @computed get getInputLength () {
     return this.defaultVal.length
@@ -65,4 +73,8 @@ class Store {
   }
 }
 
-export default Store
+let store = new Store()
+
+store.welcome.call(store)
+
+export default store 

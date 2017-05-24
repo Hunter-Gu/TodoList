@@ -178,3 +178,88 @@ class Child extends React.Component {
 
 
 ## Mobx
+Mobx 是一个状态管理工具，它可以把你的应用变为响应式。
+Mobx 提供状态给 React 使用，下面有一些概念
+
+### observable state （可观察状态）
+Mobx 为现有数据结构添加了可观察的功能，只需要通过 @observable 这个装饰器就可以使你的属性变为可观察的。
+```
+class MyStore {
+  @observable myName = 'hunter'
+}
+```
+
+### derivation （衍生）
+任何源自 state 并且不会再有进一步相互作用的东西就是衍生。Mobx 有两种类型的衍生：
+ - computed values 从当前可观察状态中衍生出的值。
+ - reactions 当前状态改变时要发生的副作用。
+
+#### computed values
+当相关数据变化时会自动更新。通过 @computed 装饰器调用的 setter／getter 函数进行使用。
+```
+class MyStore {
+  @observable myName = 'HUnter'
+
+  @computed get getNameLength () {
+    return this.myName.length
+  }
+}
+```
+
+#### reactions
+reactions 与 computed values 相比起来使用较少，它是当前状态改变所触发的副作用。
+
+### actions （动作）
+只有在 actions 中，才可以修改 Mobx 中 state 的值。注意当你使用装饰器模式时，@action 中的 this 没有绑定在当前这个实例上，要用过 @action.bound 来绑定 使得 this 绑定在实例对象上。
+```
+@action.bound setName () {
+  this.myName = 'HUnter'
+}
+```
+
+actions ------> state ------> view
+
+## Mobx-React
+上面简单介绍了 Mobx 的使用，我们知道当 React 组件中 state 变化后，要通过 setState 来触发视图的更新，Mobx 中定义了 React 组件中的 state 以及如何修改 state，那么怎么在 state 改变后触发视图的更新呢？Mobx-React 提供了 observer 将 React 组件的转变为响应式组件，确保 state 改变时可以强制刷新组件。做法很简单：
+```
+@observer
+class MyComponent extends React.Component {
+  // ...
+}
+```
+
+## React + Mobx 使用的步骤
+- 1.定义 observable state
+```
+class Store {
+  @observable data = []
+
+  // @computed ...
+
+  // @action ...
+}
+```
+- 2.创建视图
+通过 React 创建视图时，推荐创建无状态组件，即组件内没有内部的 state 和 生命周期函数。理想情况下，大部分组件都应该是无状态组件，仅通过 props 获得数据。
+```
+@observer
+class MyComponent extends React.Component {
+
+}
+```
+- 3.通过调用 Mobx 中的 actions 改变状态。
+```
+@observer
+class MyComponent extends React.Component {
+  render () {
+    let store = { this.props }
+    return (
+      <div>
+        <input onChange={store.setName} /> 
+      </div>
+    )
+  }
+}
+```
+
+上面大致讲了如何简单使用 React + Mobx 来实现一个简单的应用，描述的比较浅显。
