@@ -70,6 +70,52 @@ module.exports = {
 ## React
 React 是一个用于构建用户界面的 JavaScript 框架，也就是说 React 是一个 UI 框架，他把重点放在了 MVC 中的 V(View) 层上。
 
+### 声明组件
+React 可以通过 ES6 的 [class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) 来声明一个自定义组件，该组件继承基类 React.Component 的所有属性和方法。
+```
+class MyComponent extends React.Component {
+  render () {
+    return (
+      // jsx
+    )
+  }
+}
+```
+这里有几点要强调的地方：
+ - 1.原生 HTML 标签以小写开头，自定义 React 组件的首字母要大写。
+ - 2.JSX 语法很类似 XML，它不是必须的，但我觉得用它来编程很方便。
+ - 3.组件内的 render 函数是必须的，它返回一颗组件树，最终会被渲染成 HTML。
+
 ### 挂载虚拟 DOM
+实例化根组件，启动框架，将虚拟的 DOM 节点挂载到真实的 DOM 节点。
+```
+ReactDOM.render(jsx, DOM)
+```
+
+### React 组件的状态
+```
+class MyComponent extends React.Component {
+  constructor (...arg) {
+    super(...arg)
+    // 定义组件的初始状态
+    this.state = {
+      //...
+    }
+  }
+  handlerClick () {
+    this.setState
+  }
+  render () {
+    return (
+      <div>
+        <button
+          onClick="this.handlerClick.bind(this)
+        >click</button>
+      </div>
+    )
+  }
+}
+```
+state 是组件私有的，可以通过 setState 来修改 state，并且触发 View 的重新渲染
 
 
