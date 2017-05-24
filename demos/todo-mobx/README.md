@@ -100,10 +100,14 @@ class MyComponent extends React.Component {
     // 定义组件的初始状态
     this.state = {
       //...
+      name: 'Couzin'
     }
   }
   handlerClick () {
-    this.setState
+    // 调用后触发重新渲染
+    this.setState = {
+      name: 'HUnter'
+    }
   }
   render () {
     return (
@@ -116,6 +120,61 @@ class MyComponent extends React.Component {
   }
 }
 ```
-state 是组件私有的，可以通过 setState 来修改 state，并且触发 View 的重新渲染
+state 是组件私有的，可以通过 setState 来修改 state，并且触发 View 的重新渲染。
+
+### 传递 props
+当一个组件依赖父组件中的数据时，就需要用 props 来传递数据了。
+```
+class Father extends React.Component {
+  render () {
+    return (
+      <div>
+        {/* ... */}
+        <Child author="HUnter" />
+      </div>
+    )
+  }
+}
+class Child extends React.Component {
+  render () {
+    return (
+      <div>
+        <p>{this.props.author}</p>
+      </div>
+    )
+  }
+}
+```
+子组件中通过 this.props 就可以拿到 props 上的数据了，实现了从 父组件 ------> 子组件的数据传递。
+另外再提及一下 this.props.children：
+```
+class Father extends React.Component {
+  render () {
+    return (
+      <div>
+        {/* ... */}
+        <Child author="HUnter">
+          <h1>hello world</h1>
+        </Child>
+      </div>
+    )
+  }
+}
+class Child extends React.Component {
+  render () {
+    return (
+      <div>
+        <p>{this.props.author}</p>
+        {this.props.children}
+        {/* 相当于<h1>hello world</h1> */}
+      </div>
+    )
+  }
+}
+```
+也就是说 this.props.children 就是组件内嵌套的元素。
+
+了解了上面的这些使用方法，差不多就可以开始简单的使用 React 了。
 
 
+## Mobx
