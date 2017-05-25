@@ -1,12 +1,4 @@
 import React from 'react'
-import AddTodoCon from '../containers/addtodo'
-import TodoListCon from '../containers/todolist'
+import AddTodo from 'addtodo.jsx'
+import TodoList from 'todolist.jsx'
 
-const App = () => (
-  <div>
-    <AddTodoCon />
-    <TodoListCon />
-  </div>
-)
-
-export default App

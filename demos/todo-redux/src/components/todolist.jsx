@@ -1,12 +1,10 @@
 import React from 'react'
 
-const TodoList = ({ todos }) => (
+const TodoList = ({ listData }) => (
   <ul>
     {
-      todos.map(todo =>
-        <li key={todo.id}>
-          {todo.text}
-        </li>
+      listData.map(el =>
+        <li>{el}</li>
       )
     }
   </ul>
