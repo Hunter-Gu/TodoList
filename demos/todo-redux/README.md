@@ -22,16 +22,41 @@ React 的无状态组件，state 从redux 中来，通过 React-Redux 的 connec
  ```
  - mapDispatchToProps
  返回的对象都是函数。主要是通过 dispatch(action) 来分发 action，每次调用 dispatch(action) 都会触发 reducer 函数的执行，从而修改 state。并且和上述 mapStateToProps 相同，会将函数注入 props 中，方便在组件中调用。
- 并将
+ ```
  let mapDispatchToProps = (dispatch) => {
    return {
      // 注入 props 中，props.handlerChange 就可以调用到该函数
-     handlerChange () {
-
+     handlerChange (e) {
+       return dispatch({
+         type: 'CHANGE',
+         text: e.target.value // 通过 action 传递的值
+       })
      }
    }
  }
- - connect
+ ```
+ 或者你可以把 action 抽象出 action 创建函数，每次都返回一个 action 对象。
+ ```
+ let addTodoAction = (text) => {
+   return {
+     type: 'CHANGE',
+     text
+   }
+ }
+ let mapDispatchToProps = (dispatch) => {
+   return {
+     // 注入 props 中，props.handlerChange 就可以调用到该函数
+     handlerChange (e) {
+       return dispatch(addTodoAction(text))
+     }
+   }
+ }
+ ```
  - reducer
+ 前面说过了，我们每次通过 dispatch(action) 分发 action，就会触发 reducer 函数的调用，以达到修改 state 的目的。所以 reducer 就是一个纯函数，reducer 的功能就是返回初始或修改后的 state 对象。
+ ```
+ let reducer = (state) => {}
+ ```
+ - connect
 
 
