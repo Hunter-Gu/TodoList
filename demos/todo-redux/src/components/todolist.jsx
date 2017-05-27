@@ -1,13 +1,13 @@
 import React from 'react'
 
-const TodoList = ({ listData }) => (
+const Todo_List = ({ listData }) => (
   <ul>
     {
-      listData.map(el =>
-        <li>{el}</li>
+      listData.map((el, i) =>
+        <li key={i}>{el}</li>
       )
     }
   </ul>
 )
 
-export default TodoList
+export default Todo_List

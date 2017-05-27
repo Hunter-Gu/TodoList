@@ -72,5 +72,7 @@ React 的无状态组件，state 从redux 中来，通过 React-Redux 的 connec
  我们在 reducer 里面定义了 state 的初始值，以及当 触发 'CHANGE' 这个 action 时如何修改 state。我们在这里使用了 Object.assign 来返回一个 state 的副本，我们不希望修改 state 的值，因为 在 default 情况下，我们需要返回原来的 state 来处理未知 action。
  当代码冗长时，还可以拆分 reducer 函数，最后再通过 combineReducers 将子 reducer 合并成一个主 reducer。
  - connect
+ - createStore
+ - Provider
 
 

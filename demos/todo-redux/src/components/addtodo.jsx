@@ -1,14 +1,14 @@
 import React from 'react'
 
-const AddTodo = ({ val, handlerChange }) => {
+const Add_Todo = ({ inputVal, handlerChange }) => {
   return (
     <div className="add-todo">
       <input type="text"
-        value={val}
+        value={inputVal}
         onChange={handlerChange}
       />
     </div>
   )
 }
 
-export default AddTodo
+export default Add_Todo
