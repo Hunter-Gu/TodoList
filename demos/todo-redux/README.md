@@ -71,8 +71,22 @@ React 的无状态组件，state 从redux 中来，通过 React-Redux 的 connec
  ```
  我们在 reducer 里面定义了 state 的初始值，以及当 触发 'CHANGE' 这个 action 时如何修改 state。我们在这里使用了 Object.assign 来返回一个 state 的副本，我们不希望修改 state 的值，因为 在 default 情况下，我们需要返回原来的 state 来处理未知 action。
  当代码冗长时，还可以拆分 reducer 函数，最后再通过 combineReducers 将子 reducer 合并成一个主 reducer。
- - connect
+ - action
+ action 简单来说就是一个通知。
+                 reducer ----------------> view
+                    |           state       |
+                    |                       |
+                    | action                |
+                    +<------ dispatch <-----+
  - createStore
+ 创建一个 Redux store 来存放当前应用所有的 state。应该有且只有一个 store。接收 reducer 作为参数。
+
+## [React-Redux](#react-redux)
  - Provider
+ <Provider store> 使得组件中的 connect() 可以获取到 redux store，所以你的根组件应该嵌套在 <Provider> 中才可以使用 connect。
+ - connect
+ 连接 React 组件与 Redux Store。简单来说就是向展示组件注入state，返回容器组件。
+ mapStateToProps：接收一个 state 值，将 state 的值合并到 props，可以通过 props 访问。并且当 state 更新时，props 上的值也会更新。
+ mapDispatchToProps：接收一个 dispatch 函数。展示组件中调用的方法都来自这里，通过 dispatch 分发 action 触发 reducer 来改变 state，从而更新视图。
 
-
+React + Redux 的简单用法就是这样，慢慢深入学习吧！
