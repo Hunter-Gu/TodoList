@@ -1,0 +1,27 @@
+.nav-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 30px 0;
+  background: rgba(61, 79, 98, 0.98);
+  border-bottom: 1px solid #333;
+  .name {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    font-size: 30px;
+    a {
+      color: #fff;
+    }
+  }
+  input {
+    display: block;
+    width: 30%;
+    height: 40px;
+    margin: 0 auto;
+    padding: 0 10px;
+    outline: none;
+    border: none;
+    font-size: 16px;
+  }
+}
