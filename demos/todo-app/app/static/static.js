@@ -7,7 +7,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const getPath = url => path.resolve(procress.cwd(), './src', `${url}`)
+const getPath = url => path.resolve(process.cwd(), './src', `.${url}`)
 
 const staticServer = (request) => {
   let { url } = request
