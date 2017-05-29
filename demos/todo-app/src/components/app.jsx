@@ -1,13 +1,15 @@
 import React from 'react'
-import Navbar from './navbar.jsx'
-import List from './list.jsx'
+import Navbar from '../containers/navbar.js'
+import TodoList from '../containers/todolist.js'
 import LabelList from './label.jsx'
+import Dialog from './dialog.jsx'
 
 const App = () => (
   <div className="app">
     <Navbar />
-    <List />
+    <TodoList />
     <LabelList />
+    <Dialog />
   </div>
 )
 
