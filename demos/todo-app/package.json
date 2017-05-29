@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "prop-types": "^15.5.10"
   }
 }

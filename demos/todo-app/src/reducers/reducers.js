@@ -1,6 +1,6 @@
 const reducers = (state = {
   val: 'Hunter',
-  data: [1,2,3,4,45,5,5,6]
+  data: [1,2,3,4,45,5,5,6,1,2,3,4,45,5,5,6]
 }, action) => {
   switch (action.type) {
     case "CHANGE":

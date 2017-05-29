@@ -5,7 +5,64 @@
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.5);
-  .dialog-wrap {
-    
+  .dialog-content {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    padding: 30px;
+    border-radius: 3px;
+    box-shadow: 5px 5px 3px #333;
+    background: #fff;
+    .close {
+      float: right;
+      margin: -25px -20px 0 0;
+      font-size: 20px;
+      color: #999;
+    }
+    .dialog-row {
+      height: 30px;
+      line-height: 30px;
+      margin: 20px 0;
+      label {
+        display: block;
+        float: left;
+        height: 34px;
+        line-height: 34px;
+        padding: 0 20px;
+        font-size: 16px;
+      }
+      input {
+        display: block;
+        float: left;
+        width: 60%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+      }
+      &:after {
+        display: block;
+        content: '';
+        clear: both;
+      }
+    }
+    .dialog-btn {
+      margin-top: 20px;
+      text-align: right;
+      clear: left;
+      button {
+        padding: 10px 15px;
+        margin: 0 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: #fff;
+      }
+      .ensure {
+        color: #fff;
+        background: rgb(61, 79, 98);
+        border: 1px solid rgb(61, 79, 98);
+      }
+    }
   }
 }
