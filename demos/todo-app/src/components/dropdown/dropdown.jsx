@@ -5,7 +5,8 @@ class DropDown extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      visible: false
+      visible: false,
+      val: ''
     }
   }
   setvisible () {
@@ -22,19 +23,35 @@ class DropDown extends Component {
       this.refs.icon.className += ' rotate-hide'
     }
   }
+  componentWillMount () {
+    window.addEventListener('click', (e)=> {
+      if (e.target.className === 'drop-content') {
+        this.setState({
+          val: e.target.innerHTML
+        })
+      }
+      if (e.target.className !== 'drop-text') {
+        this.state.visible = true
+        this.addAnimation()
+        this.setState({
+          visible: !this.state.visible
+        })
+      }
+    })
+  }
   render () {
     let style = this.state.visible ? {} : {display: 'none'}
     return (
       <div className="drop-down">
         <div className="drop-text" onClick={this.setvisible.bind(this)}>
-          abc
+          {this.state.val}
           <span className="icon" ref="icon"></span>
         </div>
         <ul className="drop-select" style={style}>
-          <li>123</li>
-          <li>123</li>
-          <li>123</li>
-          <li>123</li>      
+          <li className="drop-content">abc</li>
+          <li className="drop-content">def</li>
+          <li className="drop-content">ghi</li>
+          <li className="drop-content">jkl</li>      
         </ul>
       </div>
     )

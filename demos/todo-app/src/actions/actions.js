@@ -1,5 +1,7 @@
 const CHANGE = "CHANGE"
 
+const DIALOGVISIBLE = "DIALOGVISIBLE"
+
 let handlerChangeAction = (val) => {
   return {
     type: CHANGE,
@@ -7,4 +9,14 @@ let handlerChangeAction = (val) => {
   }
 }
 
-module.exports = handlerChangeAction
+let setVisibility = (boolean) => {
+  return {
+    type: DIALOGVISIBLE,
+    visible: boolean
+  }
+}
+
+module.exports = {
+  handlerChangeAction,
+  setVisibility
+}

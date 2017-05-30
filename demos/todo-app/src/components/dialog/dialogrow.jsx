@@ -16,15 +16,15 @@ const DialogRow = ({ title, placeholder, val, handlerChange, children }) => (
   </div>
 )
 
-DialogRow.propTypes = {
-  title: PropTypes.node,
-  val: PropTypes.node,
-  handlerChange: PropTypes.func
-}
-DialogRow.defaultProps = {
-  title: 'title',
-  val: '这是标题',
-  handlerChange: () => {throw new Error('please add handlerChange func')}
-}
+// DialogRow.propTypes = {
+//   title: PropTypes.node,
+//   val: PropTypes.node,
+//   handlerChange: PropTypes.func
+// }
+// DialogRow.defaultProps = {
+//   title: 'title',
+//   val: '这是标题',
+//   handlerChange: () => {throw new Error('please add handlerChange func')}
+// }
 
 module.exports = DialogRow

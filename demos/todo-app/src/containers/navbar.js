@@ -1,5 +1,6 @@
 import Nav from '../components/nav.jsx'
-import handlerChangeAction from '../actions/actions'
+import { handlerChangeAction } from '../actions/actions'
+import { setVisibility } from '../actions/actions'
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
@@ -14,6 +15,9 @@ const mapDispatchToProps = (dispatch) => {
       return dispatch(
         handlerChangeAction(e.target.value)
       )
+    },
+    setVisibility (boolean) {
+      return dispatch(setVisibility(boolean))
     }
   }
 }
