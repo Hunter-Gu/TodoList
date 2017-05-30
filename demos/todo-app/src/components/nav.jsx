@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/navbar.scss'
 
-const Nav = ({ val, handlerChange }) => (
+const Nav = ({ val, handlerChange, setVisibilityVisible }) => (
   <div className="nav-bar">
     <p className="name">
       <a href="/">HUnter</a>
@@ -10,7 +10,7 @@ const Nav = ({ val, handlerChange }) => (
       value={val}
       onChange={handlerChange}
     />
-    <button className="add-btn">添加</button>
+    <button className="add-btn" onClick={setVisibilityVisible}>添加</button>
   </div>
 )
 

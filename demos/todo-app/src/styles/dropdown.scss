@@ -1,0 +1,70 @@
+.drop-down {
+  position: relative;
+  float: left;
+  width: 60%;
+  height: 34px;
+  line-height: 32px;
+  .drop-text {
+    width: 100%;
+    padding: 0 5px;    
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    .icon {
+      position: absolute;
+      display: block;
+      right: 0;
+      top: 16px;
+      width: 0;
+      height: 0;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #ccc transparent transparent;
+    }
+    .rotate-show {
+      animation: rotate-show 0.3s forwards;
+      transform-origin: 50% 25%;
+      @at-root {
+        @keyframes rotate-show {
+          from {
+            transform: rotateZ(0)
+          }
+          to {
+            transform: rotateZ(180deg)
+          }
+        }
+      }
+    }
+    .rotate-hide {
+      animation: rotate-hide 0.3s forwards;
+      transform-origin: 50% 25%;
+      @at-root {
+        @keyframes rotate-hide {
+          from {
+            transform: rotateZ(180deg)
+          }
+          to {
+            transform: rotateZ(0)
+          }
+        }
+      }
+    }
+  }
+  .drop-select {
+    position: absolute;
+    top: 38px;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #fff;
+    li {
+      width: 100%;
+      padding: 0 5px;
+    }
+  }
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}

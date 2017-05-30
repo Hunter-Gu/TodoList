@@ -1,14 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const DialogRow = ({ title, placeholder, val, handlerChange }) => (
+const DialogRow = ({ title, placeholder, val, handlerChange, children }) => (
   <div className="dialog-row">
     <label htmlFor={title}>{title}</label>
-    <input type="text" id={title}
-      placeholder={placeholder}
-      value={val}
-      onChange={handlerChange}
-    />
+    {
+      children
+        ? children
+        : <input type="text" id={title}
+            placeholder={placeholder}
+            value={val}
+            onChange={handlerChange}
+          />
+    }
   </div>
 )
 
