@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import DialogRow from './dialog/dialogrow.jsx'
 import DropDown from './dropdown/dropdown.jsx'
 import '../styles/dialog.scss'
@@ -11,13 +11,13 @@ class Dialog extends Component {
       valUrl: ''
     }
   }
-  handlerChange (event, target) {
-    this.setState({
-      target: event.target.value
-    })
+  handlerChange (target, event) {
+    let state = {}
+    state[target] = event.target.value
+    this.setState(state)
   }
   render () {
-    let { setVisibility, visible } = this.props
+    let { setVisibility, visible, addData } = this.props
     let { valLabel, valUrl } = this.state
     let { handlerChange } = this
     let style = (() => {
@@ -38,11 +38,11 @@ class Dialog extends Component {
           <DialogRow title="标签">
             <DropDown />
           </DialogRow>
-          <DialogRow title="标题" val={valLabel} placeholder="请输入标题" handlerChange={(e) => handlerChange.bind(this, e, 'valLabel')} />
-          <DialogRow title="链接" val={valUrl} placeholder="请输入链接" handlerChange={(e) => handlerChange.bind(this, e, 'valUrl')} />      
+          <DialogRow title="标题" val={valLabel} placeholder="请输入标题" handlerChange={handlerChange.bind(this, 'valLabel')} />
+          <DialogRow title="链接" val={valUrl} placeholder="请输入链接" handlerChange={handlerChange.bind(this, 'valUrl')} />      
           <div className="dialog-btn">
             <button onClick={()=>{setVisibility(false)}}>取消</button>
-            <button className="ensure">添加</button>
+            <button className="ensure" onClick={() => addData({valLabel, valUrl})}>添加</button>
           </div>
         </div>
       </div>

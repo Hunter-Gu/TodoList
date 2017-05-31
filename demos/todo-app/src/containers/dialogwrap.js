@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Dialog from '../components/dialog.jsx'
-import { setVisibility, handlerChangeAction } from '../actions/actions.js'
+import { setVisibility, addData } from '../actions/actions.js'
 
 const mapStateToProps = (state) => {
   return {
@@ -12,6 +12,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setVisibility (boolean) {
       return dispatch(setVisibility(boolean))
+    },
+    addData (obj) {
+      console.log(obj)
+      return dispatch(addData(obj))
     }
   }
 }

@@ -1,23 +1,20 @@
 import Nav from '../components/nav.jsx'
-import { handlerChangeAction } from '../actions/actions'
-import { setVisibility } from '../actions/actions'
+import { setVisibility, search } from '../actions/actions'
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
-  return {
-    val: state.val
-  }
+  return {}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handlerChange (e) {
-      return dispatch(
-        handlerChangeAction(e.target.value)
-      )
-    },
     setVisibility (boolean) {
       return dispatch(setVisibility(boolean))
+    },
+    search (e) {
+      if (e.keyCode === 13) {
+        return dispatch(search(e.target.value))
+      }
     }
   }
 }

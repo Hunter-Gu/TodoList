@@ -1,26 +1,23 @@
+import { DIALOGVISIBLE, SEARCH } from '../actions/actions.js'
+
 const reducers = (state = {
-  val: 'Hunter',
-  valLabel: '',
-  valUrl: '',
   data: [1,2,3,4,45,5,5,6,1,2,3,4,45,5,5,6],
   visible: false
 }, action) => {
   switch (action.type) {
-    case "CHANGE":
-      return Object.assign({}, state, {
-        val: action.val
-      })
-    case "CHANGE_URL":
-      return Object.assign({}, state, {
-        valUrl: action.valUrl
-      })
-    case "CHANGE_LABEL":
-      return Object.assign({}, state, {
-        valLabel: action.valLabel
-      })
-    case "DIALOGVISIBLE":
+    case DIALOGVISIBLE:
       return Object.assign({}, state, {
         visible: action.visible
+      })
+    case SEARCH:
+      let dataArr = []
+      state.data.forEach(el => {
+        if (el.toString().match(action.target)) {
+          dataArr.push(el)
+        }
+      })
+      return Object.assign({}, state, {
+        data: dataArr
       })
     default: 
       return state

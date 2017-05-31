@@ -14,8 +14,9 @@ class Nav extends Component {
     })
   }
   render () {
-    let { val, handlerChange } = this.state
-    let { setVisibility } = this.props
+    let { val } = this.state
+    let { handlerChange } = this
+    let { setVisibility, search } = this.props
     return (
       <div className="nav-bar">
         <p className="name">
@@ -24,6 +25,7 @@ class Nav extends Component {
         <input type="text"
           value={val}
           onChange={handlerChange.bind(this)}
+          onKeyDown={search}
         />
         <button className="add-btn" onClick={() => {setVisibility(true)}}>添加</button>
       </div>
