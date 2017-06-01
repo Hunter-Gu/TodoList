@@ -1,7 +1,15 @@
 .label-list {
   position: fixed;
-  top: 200px;
-  right: 20px;
+  padding: 10px;
+  top: 100px;
+  right: 0;
   width: 200px;
-  background: #ccc;
+  background: #fff;
+  li {
+    float: left;
+    padding: 2px 10px;
+    margin: 5px;
+    color: rgb(61, 79, 98);
+    border: 1px dashed rgb(61, 79, 98);
+  }
 }

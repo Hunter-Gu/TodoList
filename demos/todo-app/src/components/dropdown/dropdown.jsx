@@ -26,6 +26,7 @@ class DropDown extends Component {
   componentWillMount () {
     window.addEventListener('click', (e)=> {
       if (e.target.className === 'drop-content') {
+        this.props.getValue(e.target.innerHTML)
         this.setState({
           val: e.target.innerHTML
         })

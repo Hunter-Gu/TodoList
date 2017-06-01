@@ -8,7 +8,8 @@ class Dialog extends Component {
     super(props)
     this.state = {
       valLabel: '',
-      valUrl: ''
+      valUrl: '',
+      label: ''
     }
   }
   handlerChange (target, event) {
@@ -16,10 +17,15 @@ class Dialog extends Component {
     state[target] = event.target.value
     this.setState(state)
   }
+  getValue (str) {
+    this.setState({
+      label: str
+    })
+  }
   render () {
     let { setVisibility, visible, addData } = this.props
-    let { valLabel, valUrl } = this.state
-    let { handlerChange } = this
+    let { valLabel, valUrl, label } = this.state
+    let { handlerChange, getValue } = this
     let style = (() => {
       if (!visible) {
         return {
@@ -36,13 +42,13 @@ class Dialog extends Component {
         <div className="dialog-content">
           <a className="close" href="javascript:void(0)" onClick={()=>{setVisibility(false)}}>X</a>
           <DialogRow title="标签">
-            <DropDown />
+            <DropDown getValue={getValue.bind(this)}/>
           </DialogRow>
           <DialogRow title="标题" val={valLabel} placeholder="请输入标题" handlerChange={handlerChange.bind(this, 'valLabel')} />
           <DialogRow title="链接" val={valUrl} placeholder="请输入链接" handlerChange={handlerChange.bind(this, 'valUrl')} />      
           <div className="dialog-btn">
             <button onClick={()=>{setVisibility(false)}}>取消</button>
-            <button className="ensure" onClick={() => addData({valLabel, valUrl})}>添加</button>
+            <button className="ensure" onClick={() => addData({label, valLabel, valUrl})}>添加</button>
           </div>
         </div>
       </div>

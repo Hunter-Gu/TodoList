@@ -14,8 +14,24 @@ const mapDispatchToProps = (dispatch) => {
       return dispatch(setVisibility(boolean))
     },
     addData (obj) {
+      Object.keys(obj).forEach(el => {
+        checkEmpty(obj[el])
+      })
+      checkUrl(obj.valUrl)
       return dispatch(addData(obj))
     }
+  }
+}
+
+const checkUrl = (url) => {
+  let patt = /^http:\/\//
+  if (!patt.test(url)) {
+    throw new Error('链接 expected starting with "http://"')
+  }
+}
+const checkEmpty = (str) => {
+  if (!str) {
+    throw new Error('please enter your content')
   }
 }
 

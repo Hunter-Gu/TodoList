@@ -1,17 +1,9 @@
 import { DIALOGVISIBLE, SEARCH, ADD_DATA } from '../actions/actions.js'
 
-const checkUrl = (url) => {
-  let patt = /^http:\/\//
-  if (patt.test(url)) {
-    throw new Error('链接 expected starting with "http://"')
-  }
-}
-const checkEmpty = (target) => {
-  console.log(target)
-}
+const dataList = [{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'}]
 
 const reducers = (state = {
-  data: [{valLabel: 'a', valUrl: 'b'},{valLabel: 'a', valUrl: 'b'},{valLabel: 'a', valUrl: 'b'},{valLabel: 'a', valUrl: 'b'}],
+  data: dataList,
   visible: false
 }, action) => {
   switch (action.type) {
@@ -20,14 +12,12 @@ const reducers = (state = {
         visible: action.visible
       })
     case SEARCH:
-      debugger
       let dataArr = []
-      state.data.forEach(el => {
+      dataList.forEach(el => {
         if (el.valLabel.toString().match(action.target)) {
           dataArr.push(el)
         }
       })
-      debugger
       return Object.assign({}, state, {
         data: dataArr
       })
