@@ -5,7 +5,9 @@ const List = ({ data }) => (
       <ul className="list">
         {
           data.map((el,i) => {
-            return <li key={i}>{el}</li>
+            return <li key={i}>
+              <a href={el.valUrl}>{el.valLabel}</a>
+            </li>
           })
         }
       </ul>

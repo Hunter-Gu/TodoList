@@ -14,7 +14,6 @@ const mapDispatchToProps = (dispatch) => {
       return dispatch(setVisibility(boolean))
     },
     addData (obj) {
-      console.log(obj)
       return dispatch(addData(obj))
     }
   }
