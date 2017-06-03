@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Dialog from '../components/dialog.jsx'
-import { setVisibility, addData } from '../actions/actions.js'
+import { setVisibility, addDataRequest, addDataReceive } from '../actions/actions.js'
 
 const mapStateToProps = (state) => {
   return {
@@ -18,7 +18,21 @@ const mapDispatchToProps = (dispatch) => {
         checkEmpty(obj[el])
       })
       checkUrl(obj.valUrl)
-      return dispatch(addData(obj))
+      dispatch(addDataRequest(obj))
+      
+      return fetch('/add.action', {
+        method: 'POST',
+        body: JSON.stringify(obj)
+      })
+        .then(res => {
+          res.json()
+            .then(res => {
+              console.log(res)
+            })
+        })
+        .catch(error => {
+          console.log('add data error ' + error.message)
+        })
     }
   }
 }

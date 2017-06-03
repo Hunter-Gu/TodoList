@@ -46,14 +46,26 @@ let search = (str) => {
 exports.SEARCH = SEARCH
 exports.search = search
 
-let ADD_DATA = "ADD_DATA"
+let ADD_DATA_REQUEST = "ADD_DATA_REQUEST"
 
-let addData = (obj) => {
+let addDataRequest = (obj) => {
   return {
-    type: ADD_DATA,
+    type: ADD_DATA_REQUEST,
     data: obj
   }
 }
 
-exports.ADD_DATA = ADD_DATA
-exports.addData = addData
+exports.ADD_DATA_REQUEST = ADD_DATA_REQUEST
+exports.addDataRequest = addDataRequest
+
+let ADD_DATA_RECEIVE = "ADD_DATA_RECEIVE"
+
+let addDataReceive = (obj) => {
+  return {
+    type: ADD_DATA_RECEIVE,
+    data: obj
+  }
+}
+
+exports.ADD_DATA_RECEIVE = ADD_DATA_RECEIVE
+exports.addDataReceive = addDataReceive

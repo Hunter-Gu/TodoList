@@ -1,16 +1,19 @@
-import { REQUEST_POST, RECEIVE_POST, DIALOGVISIBLE, SEARCH, ADD_DATA } from '../actions/actions.js'
+import { REQUEST_POST, RECEIVE_POST, DIALOGVISIBLE, SEARCH, ADD_DATA_RECEIVE, ADD_DATA_REQUEST } from '../actions/actions.js'
 
-const dataList = [{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'}]
+let dataList = []
 
 const reducers = (state = {
-  data: dataList,
+  data: [],
   visible: false
 }, action) => {
   switch (action.type) {
     case REQUEST_POST:
       return Object.assign({}, state)
     case RECEIVE_POST:
-      return Object.assign({}, state)
+      dataList = action.dataObj
+      return Object.assign({}, state, {
+        data: action.dataObj
+      })
     case DIALOGVISIBLE:
       return Object.assign({}, state, {
         visible: action.visible
@@ -25,7 +28,7 @@ const reducers = (state = {
       return Object.assign({}, state, {
         data: dataArr
       })
-    case ADD_DATA:
+    case ADD_DATA_REQUEST:
       let arr = JSON.parse(JSON.stringify(state.data))
       arr.push(action.data)
       dataList.push(action.data)
@@ -33,6 +36,9 @@ const reducers = (state = {
         data: arr,
         visible: false
       })
+    case ADD_DATA_RECEIVE:
+      console.log(2222)
+      return
     default: 
       return state
   }
