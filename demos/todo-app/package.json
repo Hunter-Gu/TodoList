@@ -2,10 +2,10 @@
   "name": "todo-app",
   "version": "1.0.0",
   "description": "todo app with react & redux",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --config webpack.config.js"
+    "dev": "webpack && nodemon --inspect app.js"
   },
   "author": "HUnter Gu",
   "license": "ISC",

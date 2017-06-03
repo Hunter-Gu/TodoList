@@ -24,6 +24,7 @@ const reducers = (state = {
     case ADD_DATA:
       let arr = JSON.parse(JSON.stringify(state.data))
       arr.push(action.data)
+      dataList.push(action.data)
       return Object.assign({}, state, {
         data: arr,
         visible: false
