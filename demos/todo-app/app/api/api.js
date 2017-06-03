@@ -6,9 +6,13 @@
 const apiServer = (request) => {
   let { url, method, context } = request
 
+  let apiMap = {
+    '/data.action': [{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'}]
+  }
+
   method = method.toLowerCase()
   if (method === 'get') {
-    return Promise.resolve()
+    return Promise.resolve(apiMap[url])
   } else {
     return Promise.resolve(context.body)
   }

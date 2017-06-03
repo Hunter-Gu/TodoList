@@ -2,11 +2,21 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/app.jsx'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import { createLogger } from 'redux-logger'
 import reducers from './reducers/reducers.js'
 import './styles/index.scss'
 
-let store = createStore(reducers)
+const loggerMiddleware = createLogger()
+
+let store = createStore(
+  reducers,
+  applyMiddleware(
+    thunkMiddleware,
+    loggerMiddleware
+  )
+)
 
 ReactDOM.render(
   <Provider store={store}>

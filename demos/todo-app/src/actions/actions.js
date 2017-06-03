@@ -1,3 +1,28 @@
+const RECEIVE_POST = "RECEIVE_POST"
+
+let receivePost = (dataObj) => {
+  return {
+    type: RECEIVE_POST,
+    dataObj
+  }
+}
+
+exports.RECEIVE_POST = RECEIVE_POST
+exports.receivePost = receivePost
+
+const REQUEST_POST = "REQUEST_POST"
+
+let requestPost = (dataObj) => {
+  return {
+    type: REQUEST_POST,
+    dataObj
+  }
+}
+
+
+exports.REQUEST_POST = REQUEST_POST
+exports.requestPost = requestPost
+
 const DIALOGVISIBLE = "DIALOGVISIBLE"
 
 let setVisibility = (boolean) => {

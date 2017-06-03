@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
 import '../styles/list.scss'
 
-const List = ({ data }) => (
+class List extends Component {
+  constructor (props) {
+    super(props)
+  }
+  componentWillMount () {
+    let { fetchData } = this.props
+    fetchData()
+  }
+  render () {
+    let { data } = this.props
+    return (
       <ul className="list">
         {
           data.map((el,i) => {
@@ -12,5 +22,7 @@ const List = ({ data }) => (
         }
       </ul>
     )
+  }
+}
 
 export default List

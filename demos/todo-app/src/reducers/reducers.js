@@ -1,4 +1,4 @@
-import { DIALOGVISIBLE, SEARCH, ADD_DATA } from '../actions/actions.js'
+import { REQUEST_POST, RECEIVE_POST, DIALOGVISIBLE, SEARCH, ADD_DATA } from '../actions/actions.js'
 
 const dataList = [{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'}]
 
@@ -7,6 +7,10 @@ const reducers = (state = {
   visible: false
 }, action) => {
   switch (action.type) {
+    case REQUEST_POST:
+      return Object.assign({}, state)
+    case RECEIVE_POST:
+      return Object.assign({}, state)
     case DIALOGVISIBLE:
       return Object.assign({}, state, {
         visible: action.visible
