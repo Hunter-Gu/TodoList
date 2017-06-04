@@ -22,10 +22,22 @@ class Dialog extends Component {
       label: str
     })
   }
+  setVisible () {
+    let { setVisibility } = this.props
+    setVisibility(false)
+  }
+  addData (valLabel, valUrl) {
+    let { addData } = this.props
+    addData({valLabel, valUrl})
+    this.setState({
+      valLabel: '',
+      valUrl: '',
+    })
+  }
   render () {
-    let { setVisibility, visible, addData } = this.props
+    let { visible, labelData } = this.props
     let { valLabel, valUrl, label } = this.state
-    let { handlerChange, getValue } = this
+    let { handlerChange, getValue, addData, setVisible } = this
     let style = (() => {
       if (!visible) {
         return {
@@ -38,17 +50,17 @@ class Dialog extends Component {
       }
     })()
     return (
-      <div className="dialog" style={style} onClick={(e)=>{if (e.target.className === 'dialog') {setVisibility(false)}}}>
+      <div className="dialog" style={style}>
         <div className="dialog-content">
-          <a className="close" href="javascript:void(0)" onClick={()=>{setVisibility(false)}}>X</a>
-          <DialogRow title="标签">
-            <DropDown getValue={getValue.bind(this)}/>
-          </DialogRow>
+          <a className="close" href="javascript:void(0)" onClick={setVisible.bind(this)}>X</a>
+          {/*<DialogRow title="标签">
+            <DropDown getValue={getValue.bind(this)} labelData={labelData}/>
+          </DialogRow>*/}
           <DialogRow title="标题" val={valLabel} placeholder="请输入标题" handlerChange={handlerChange.bind(this, 'valLabel')} />
           <DialogRow title="链接" val={valUrl} placeholder="请输入链接" handlerChange={handlerChange.bind(this, 'valUrl')} />      
           <div className="dialog-btn">
-            <button onClick={()=>{setVisibility(false)}}>取消</button>
-            <button className="ensure" onClick={() => addData({label, valLabel, valUrl})}>添加</button>
+            <button onClick={setVisible.bind(this)}>取消</button>
+            <button className="ensure" onClick={addData.bind(this, valLabel, valUrl)}>添加</button>
           </div>
         </div>
       </div>

@@ -4,7 +4,8 @@ import { setVisibility, addDataRequest, addDataReceive } from '../actions/action
 
 const mapStateToProps = (state) => {
   return {
-    visible: state.visible
+    visible: state.visible,
+    labelData: state.labelData
   }
 }
 
@@ -38,7 +39,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const checkUrl = (url) => {
-  let patt = /^http:\/\//
+  let patt = /^http(s)?:\/\//
   if (!patt.test(url)) {
     throw new Error('链接 expected starting with "http://"')
   }

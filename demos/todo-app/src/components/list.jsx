@@ -10,14 +10,22 @@ class List extends Component {
     fetchData()
   }
   render () {
-    let { data } = this.props
+    let { data, deleteIdx } = this.props
     return (
       <ul className="list">
         {
           data.map((el,i) => {
-            return <li key={i}>
-              <a href={el.valUrl}>{el.valLabel}</a>
-            </li>
+            return (
+              <li key={i}>
+                <div>
+                  <span>{i+1}.</span>
+                  <a href={el.valUrl} target>{el.valLabel}</a>
+                </div>
+                <a className="btn" href="javascript:void(0)"
+                  onClick={()=>deleteIdx(el.id, i)}
+                >DELETE</a>
+              </li>
+            )
           })
         }
       </ul>

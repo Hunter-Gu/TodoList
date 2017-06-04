@@ -4321,6 +4321,54 @@ var addDataReceive = function addDataReceive(obj) {
 exports.ADD_DATA_RECEIVE = ADD_DATA_RECEIVE;
 exports.addDataReceive = addDataReceive;
 
+var DELETE_DATA_REQUEST = "DELETE_DATA_REQUEST";
+
+var deleteDataRequest = function deleteDataRequest(idx) {
+  return {
+    type: DELETE_DATA_REQUEST,
+    data: idx
+  };
+};
+
+exports.DELETE_DATA_REQUEST = DELETE_DATA_REQUEST;
+exports.deleteDataRequest = deleteDataRequest;
+
+var DELETE_DATA_RECEIVE = "DELETE_DATA_RECEIVE";
+
+var deleteDataReceive = function deleteDataReceive(idx) {
+  return {
+    type: DELETE_DATA_RECEIVE,
+    data: idx
+  };
+};
+
+exports.DELETE_DATA_RECEIVE = DELETE_DATA_RECEIVE;
+exports.deleteDataReceive = deleteDataReceive;
+
+var GET_LABEL_REQUEST = "GET_LABEL_REQUEST";
+
+var getlabelRequest = function getlabelRequest(labelData) {
+  return {
+    type: GET_LABEL_REQUEST,
+    labelData: labelData
+  };
+};
+
+exports.GET_LABEL_REQUEST = GET_LABEL_REQUEST;
+exports.getlabelRequest = getlabelRequest;
+
+var GET_LABEL_RECEIVE = "GET_LABEL_RECEIVE";
+
+var getlabelReceive = function getlabelReceive(labelData) {
+  return {
+    type: GET_LABEL_RECEIVE,
+    labelData: labelData
+  };
+};
+
+exports.GET_LABEL_RECEIVE = GET_LABEL_RECEIVE;
+exports.getlabelReceive = getlabelReceive;
+
 /***/ }),
 /* 48 */
 /***/ (function(module, exports) {
@@ -12355,9 +12403,9 @@ var _todolist = __webpack_require__(163);
 
 var _todolist2 = _interopRequireDefault(_todolist);
 
-var _label = __webpack_require__(157);
+var _labelwrap = __webpack_require__(348);
 
-var _label2 = _interopRequireDefault(_label);
+var _labelwrap2 = _interopRequireDefault(_labelwrap);
 
 var _dialogwrap = __webpack_require__(161);
 
@@ -12381,7 +12429,6 @@ var App = function (_Component) {
         { className: 'app' },
         _react2.default.createElement(_navbar2.default, null),
         _react2.default.createElement(_todolist2.default, null),
-        _react2.default.createElement(_label2.default, null),
         _react2.default.createElement(_dialogwrap2.default, null)
       );
     }
@@ -12411,11 +12458,13 @@ var _actions = __webpack_require__(47);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var dataList = [];
+var labelData = [];
 
 var reducers = function reducers() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     data: [],
-    visible: false
+    visible: false,
+    labelData: []
   };
   var action = arguments[1];
 
@@ -12450,8 +12499,22 @@ var reducers = function reducers() {
         visible: false
       });
     case _actions.ADD_DATA_RECEIVE:
-      console.log(2222);
-      return;
+      return (0, _assign2.default)({}, state);
+    case _actions.DELETE_DATA_REQUEST:
+      var dataObj = JSON.parse((0, _stringify2.default)(state.data));
+      dataObj.splice(action.data, 1);
+      return (0, _assign2.default)({}, state, {
+        data: dataObj
+      });
+    case _actions.DELETE_DATA_RECEIVE:
+      return (0, _assign2.default)({}, state);
+    case _actions.GET_LABEL_REQUEST:
+      return (0, _assign2.default)({}, state);
+    case _actions.GET_LABEL_RECEIVE:
+      labelData = action.labelData;
+      return (0, _assign2.default)({}, state, {
+        labelData: action.labelData
+      });
     default:
       return state;
   }
@@ -12611,18 +12674,37 @@ var Dialog = function (_Component) {
       });
     }
   }, {
+    key: 'setVisible',
+    value: function setVisible() {
+      var setVisibility = this.props.setVisibility;
+
+      setVisibility(false);
+    }
+  }, {
+    key: 'addData',
+    value: function addData(valLabel, valUrl) {
+      var addData = this.props.addData;
+
+      addData({ valLabel: valLabel, valUrl: valUrl });
+      this.setState({
+        valLabel: '',
+        valUrl: ''
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _props = this.props,
-          setVisibility = _props.setVisibility,
           visible = _props.visible,
-          addData = _props.addData;
+          labelData = _props.labelData;
       var _state = this.state,
           valLabel = _state.valLabel,
           valUrl = _state.valUrl,
           label = _state.label;
       var handlerChange = this.handlerChange,
-          getValue = this.getValue;
+          getValue = this.getValue,
+          addData = this.addData,
+          setVisible = this.setVisible;
 
       var style = function () {
         if (!visible) {
@@ -12635,25 +12717,14 @@ var Dialog = function (_Component) {
       }();
       return _react2.default.createElement(
         'div',
-        { className: 'dialog', style: style, onClick: function onClick(e) {
-            if (e.target.className === 'dialog') {
-              setVisibility(false);
-            }
-          } },
+        { className: 'dialog', style: style },
         _react2.default.createElement(
           'div',
           { className: 'dialog-content' },
           _react2.default.createElement(
             'a',
-            { className: 'close', href: 'javascript:void(0)', onClick: function onClick() {
-                setVisibility(false);
-              } },
+            { className: 'close', href: 'javascript:void(0)', onClick: setVisible.bind(this) },
             'X'
-          ),
-          _react2.default.createElement(
-            _dialogrow2.default,
-            { title: '\u6807\u7B7E' },
-            _react2.default.createElement(_dropdown2.default, { getValue: getValue.bind(this) })
           ),
           _react2.default.createElement(_dialogrow2.default, { title: '\u6807\u9898', val: valLabel, placeholder: '\u8BF7\u8F93\u5165\u6807\u9898', handlerChange: handlerChange.bind(this, 'valLabel') }),
           _react2.default.createElement(_dialogrow2.default, { title: '\u94FE\u63A5', val: valUrl, placeholder: '\u8BF7\u8F93\u5165\u94FE\u63A5', handlerChange: handlerChange.bind(this, 'valUrl') }),
@@ -12662,16 +12733,12 @@ var Dialog = function (_Component) {
             { className: 'dialog-btn' },
             _react2.default.createElement(
               'button',
-              { onClick: function onClick() {
-                  setVisibility(false);
-                } },
+              { onClick: setVisible.bind(this) },
               '\u53D6\u6D88'
             ),
             _react2.default.createElement(
               'button',
-              { className: 'ensure', onClick: function onClick() {
-                  return addData({ label: label, valLabel: valLabel, valUrl: valUrl });
-                } },
+              { className: 'ensure', onClick: addData.bind(this, valLabel, valUrl) },
               '\u6DFB\u52A0'
             )
           )
@@ -12829,6 +12896,8 @@ var DropDown = function (_Component) {
     key: 'render',
     value: function render() {
       var style = this.state.visible ? {} : { display: 'none' };
+      var labelData = this.props.labelData;
+
       return _react2.default.createElement(
         'div',
         { className: 'drop-down' },
@@ -12841,26 +12910,13 @@ var DropDown = function (_Component) {
         _react2.default.createElement(
           'ul',
           { className: 'drop-select', style: style },
-          _react2.default.createElement(
-            'li',
-            { className: 'drop-content' },
-            'abc'
-          ),
-          _react2.default.createElement(
-            'li',
-            { className: 'drop-content' },
-            'def'
-          ),
-          _react2.default.createElement(
-            'li',
-            { className: 'drop-content' },
-            'ghi'
-          ),
-          _react2.default.createElement(
-            'li',
-            { className: 'drop-content' },
-            'jkl'
-          )
+          labelData.map(function (el) {
+            return _react2.default.createElement(
+              'li',
+              { key: el },
+              el
+            );
+          })
         )
       );
     }
@@ -12913,17 +12969,26 @@ __webpack_require__(340);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var LabelList = function (_Component) {
-  (0, _inherits3.default)(LabelList, _Component);
+var Label = function (_Component) {
+  (0, _inherits3.default)(Label, _Component);
 
-  function LabelList() {
-    (0, _classCallCheck3.default)(this, LabelList);
-    return (0, _possibleConstructorReturn3.default)(this, (LabelList.__proto__ || (0, _getPrototypeOf2.default)(LabelList)).apply(this, arguments));
+  function Label(props) {
+    (0, _classCallCheck3.default)(this, Label);
+    return (0, _possibleConstructorReturn3.default)(this, (Label.__proto__ || (0, _getPrototypeOf2.default)(Label)).call(this, props));
   }
 
-  (0, _createClass3.default)(LabelList, [{
+  (0, _createClass3.default)(Label, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var getLabel = this.props.getLabel;
+
+      getLabel();
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var labelData = this.props.labelData;
+
       return _react2.default.createElement(
         'div',
         { className: 'label' },
@@ -12931,74 +12996,21 @@ var LabelList = function (_Component) {
         _react2.default.createElement(
           'ul',
           { className: 'label-list' },
-          _react2.default.createElement(
-            'li',
-            null,
-            'abc'
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            'abc'
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            'abc'
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            'abc'
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            'abc'
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            'abc'
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            'abc'
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            'abc'
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            'abc'
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            'abc'
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            'abc'
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            'abc'
-          )
+          labelData.map(function (el, i) {
+            return _react2.default.createElement(
+              'li',
+              { key: i },
+              el
+            );
+          })
         )
       );
     }
   }]);
-  return LabelList;
+  return Label;
 }(_react.Component);
 
-exports.default = LabelList;
+exports.default = Label;
 
 /***/ }),
 /* 158 */
@@ -13069,7 +13081,7 @@ var LabelFn = function (_Component) {
         { className: 'label-fn' },
         _react2.default.createElement(
           'button',
-          null,
+          { onClick: '' },
           '\u641C\u7D22'
         ),
         _react2.default.createElement('input', { type: 'text',
@@ -13146,7 +13158,9 @@ var List = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var data = this.props.data;
+      var _props = this.props,
+          data = _props.data,
+          deleteIdx = _props.deleteIdx;
 
       return _react2.default.createElement(
         'ul',
@@ -13156,9 +13170,28 @@ var List = function (_Component) {
             'li',
             { key: i },
             _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'span',
+                null,
+                i + 1,
+                '.'
+              ),
+              _react2.default.createElement(
+                'a',
+                { href: el.valUrl, target: true },
+                el.valLabel
+              )
+            ),
+            _react2.default.createElement(
               'a',
-              { href: el.valUrl },
-              el.valLabel
+              { className: 'btn', href: 'javascript:void(0)',
+                onClick: function onClick() {
+                  return deleteIdx(el.id, i);
+                }
+              },
+              'DELETE'
             )
           );
         })
@@ -13302,7 +13335,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    visible: state.visible
+    visible: state.visible,
+    labelData: state.labelData
   };
 };
 
@@ -13333,7 +13367,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 var checkUrl = function checkUrl(url) {
-  var patt = /^http:\/\//;
+  var patt = /^http(s)?:\/\//;
   if (!patt.test(url)) {
     throw new Error('链接 expected starting with "http://"');
   }
@@ -13397,6 +13431,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _stringify = __webpack_require__(96);
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
 var _list = __webpack_require__(159);
 
 var _list2 = _interopRequireDefault(_list);
@@ -13427,6 +13465,18 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       }).catch(function (err) {
         console.log(err.message);
       });
+    },
+    deleteIdx: function deleteIdx(idx, i) {
+      dispatch((0, _actions.deleteDataRequest)(i));
+
+      return fetch('/delete.action', {
+        method: 'POST',
+        body: (0, _stringify2.default)({ idx: idx })
+      }).then(function (res) {
+        res.json().then(function (res) {
+          dispatch((0, _actions.deleteDataReceive)(idx));
+        });
+      }).catch();
     }
   };
 };
@@ -14400,7 +14450,7 @@ exports = module.exports = __webpack_require__(34)(undefined);
 
 
 // module
-exports.push([module.i, ".list {\n  margin: 150px auto 0;\n  width: 50%; }\n  .list li {\n    margin-bottom: 10px;\n    height: 30px;\n    line-height: 30px;\n    background: #fff; }\n", ""]);
+exports.push([module.i, ".list {\n  margin: 150px auto 0;\n  width: 50%; }\n  .list li {\n    margin-bottom: 10px;\n    height: 30px;\n    line-height: 30px; }\n    .list li div {\n      float: left;\n      padding: 0 10px;\n      background: #fff;\n      border-radius: 5px; }\n      .list li div span {\n        margin-right: 10px;\n        color: #555; }\n      .list li div a {\n        color: #333; }\n    .list li .btn {\n      float: right;\n      display: block;\n      height: 30px;\n      line-height: 30px;\n      padding: 0 10px;\n      border: none;\n      background: #fff;\n      color: #333;\n      border-radius: 5px;\n      font-size: 12px; }\n", ""]);
 
 // exports
 
@@ -27973,6 +28023,56 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 348 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _label = __webpack_require__(157);
+
+var _label2 = _interopRequireDefault(_label);
+
+var _reactRedux = __webpack_require__(46);
+
+var _actions = __webpack_require__(47);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    labelData: state.labelData
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    getLabel: function getLabel(str) {
+      dispatch((0, _actions.getlabelRequest)());
+
+      return fetch('/getlabel.action', {
+        method: "GET",
+        headers: str || ''
+      }).then(function (res) {
+        res.json().then(function (res) {
+          dispatch((0, _actions.getlabelReceive)(res));
+        });
+      }).catch(function (err) {
+        console.log(err.message);
+      });
+    }
+  };
+};
+
+var LabelWrap = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_label2.default);
+
+exports.default = LabelWrap;
 
 /***/ })
 /******/ ]);

@@ -5,6 +5,30 @@
     margin-bottom: 10px;
     height: 30px;
     line-height: 30px;
-    background: #fff;
+    div {
+      float: left;
+      padding: 0 10px;
+      background: #fff;
+      border-radius: 5px;  
+      span {
+        margin-right: 10px;
+        color: #555;
+      }
+      a {
+        color: #333;
+      }
+    }
+    .btn {
+      float: right;
+      display: block;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 10px;
+      border: none;
+      background: #fff;
+      color: #333;
+      border-radius: 5px;
+      font-size: 12px;
+    }
   }
 }

@@ -42,6 +42,7 @@ class DropDown extends Component {
   }
   render () {
     let style = this.state.visible ? {} : {display: 'none'}
+    let { labelData } = this.props
     return (
       <div className="drop-down">
         <div className="drop-text" onClick={this.setvisible.bind(this)}>
@@ -49,10 +50,11 @@ class DropDown extends Component {
           <span className="icon" ref="icon"></span>
         </div>
         <ul className="drop-select" style={style}>
-          <li className="drop-content">abc</li>
-          <li className="drop-content">def</li>
-          <li className="drop-content">ghi</li>
-          <li className="drop-content">jkl</li>      
+          {
+            labelData.map(el => {
+              return <li key={el}>{el}</li>
+            })
+          }
         </ul>
       </div>
     )

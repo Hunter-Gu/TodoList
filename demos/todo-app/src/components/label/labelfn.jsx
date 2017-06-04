@@ -17,7 +17,7 @@ class LabelFn extends Component {
     let { handlerChange } = this
     return (
       <div className="label-fn">
-        <button>搜索</button>
+        <button onClick="">搜索</button>
         <input type="text"
           value={val}
           onChange={handlerChange.bind(this)}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from '../containers/navbar.js'
 import TodoList from '../containers/todolist.js'
-import LabelList from './label.jsx'
+import LabelWrap from '../containers/labelwrap.js'
 import DialogWrap from '../containers/dialogwrap.js'
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
       <div className="app">
         <Navbar />
         <TodoList />
-        <LabelList />
+        {/*<LabelWrap />*/}
         <DialogWrap />
       </div>
     )

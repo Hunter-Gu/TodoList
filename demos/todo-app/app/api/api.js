@@ -3,19 +3,31 @@
  * 主要处理 api 请求，如 get post 等
  */
 
+const fs = require('fs')
+
 const apiServer = (request) => {
   let { url, method, context } = request
 
-  let apiMap = {
-    '/data.action': [{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'},{valLabel: 'a', valUrl: 'a'},{valLabel: 'b', valUrl: 'b'},{valLabel: 'c', valUrl: 'c'},{valLabel: 'd', valUrl: 'd'}]
-  }
+  return new Promise((resolve, reject) => {
 
-  method = method.toLowerCase()
-  if (method === 'get') {
-    return Promise.resolve(apiMap[url])
-  } else {
-    return Promise.resolve(context.body)
-  }
+    let apiMap = {
+      '/data.action': './data/data.json',
+      '/getlabel.action': './data/label.json'
+    }
+
+    method = method.toLowerCase()
+    if (method === 'get') {
+      if (url.match('action')) {
+        fs.readFile(apiMap[url], (err, data) => {
+          resolve(data)
+        })
+      }else {
+        resolve()
+      }
+    } else {
+        resolve(context.body)
+    }
+  })
 }
 
 module.exports = apiServer

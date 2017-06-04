@@ -1,5 +1,5 @@
 import List from '../components/list.jsx'
-import { receivePost, requestPost } from '../actions/actions' 
+import { receivePost, requestPost, deleteDataRequest, deleteDataReceive } from '../actions/actions' 
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
@@ -24,6 +24,21 @@ const mapDispatchToProps = (dispatch) => {
         .catch(err => {
           console.log(err.message)
         })
+    },
+    deleteIdx (idx, i) {
+      dispatch(deleteDataRequest(i))
+
+      return fetch('/delete.action', {
+        method: 'POST',
+        body: JSON.stringify({idx:idx})
+      })
+        .then(res => {
+          res.json()
+            .then(res => {
+              dispatch(deleteDataReceive(idx))
+            })
+        })
+        .catch()
     }
   }
 }
