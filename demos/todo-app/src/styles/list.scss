@@ -7,9 +7,15 @@
     line-height: 30px;
     div {
       float: left;
+      max-width: 80%;        
       padding: 0 10px;
       background: #fff;
-      border-radius: 5px;  
+      border-radius: 5px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      word-break: break-all;
       span {
         margin-right: 10px;
         color: #555;
