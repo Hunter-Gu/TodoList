@@ -16,6 +16,7 @@ node app.js
 ```
 
 ##  项目结构
+```
 todo-app
   |
   +------/app 处理 http 请求
@@ -37,8 +38,9 @@ todo-app
   |       +------样式 scss文件
   |
   +------app.js node入口文件
+```
 
-![demo](/Users/hunter-gu/Desktop/demo.png)
+![demo](./screencut/demo.png)
 
 ## 异步 Action
 两个关键时刻：发送请求的时刻，接收响应的时刻／响应超时。
